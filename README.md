@@ -1,6 +1,6 @@
 # AgileFingers - Script Autoplay (Absolute Mode) 🚀
 
-Um script de automação de alta performance para o site AgileFingers. Esta versão utiliza o **Modo Absolute**, garantindo sincronia total com o DOM e uma velocidade de digitação agressiva.
+Um script de automação de alta performance para o site AgileFingers, garantindo sincronia total com o DOM e uma velocidade de digitação agressiva.
 
 ---
 
@@ -17,8 +17,8 @@ O script possui um sistema de segurança que valida a página antes de iniciar. 
 
 ## 🛠️ Como Instalar e Usar
 
-1. Acesse uma das páginas de teste do [AgileFingers](https://www.agilefingers.com).
-2. Pressione `F12` (ou `Ctrl+Shift+I`) para abrir o Console do Desenvolvedor.
+1. Acesse uma das páginas de teste do [AgileFingers]([https://agilefingers.com/pt/teste]).
+2. Pressione `F12` (ou `Ctrl+Shift+I`) para abrir o Console.
 3. Copie o código abaixo na íntegra.
 4. Cole no console e pressione `Enter`.
 
