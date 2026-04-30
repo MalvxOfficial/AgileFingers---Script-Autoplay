@@ -9,16 +9,15 @@ O script possui um sistema de segurança que valida a página antes de iniciar. 
 * `https://agilefingers.com/*/teste/*` (Onde `*` representa qualquer idioma ou tarefa).
 
 **Exemplos válidos:**
-* `.../pt/teste/tarefa-texto-1`
-* `.../pt/teste/tarefa-palavras-aleatorias`
-* `.../en/teste/tarefa-numeros-palavras-aleatorios`
+* `https://agilefingers.com/pt/teste/tarefa-texto-1`
+* `https://agilefingers.com/pt/teste/tarefa-palavras-aleatorias`
 
 ---
 
 ## 🛠️ Como Instalar e Usar
 
-1. Acesse uma das páginas de teste do [AgileFingers]([https://agilefingers.com/pt/teste]).
-2. Pressione `F12` (ou `Ctrl+Shift+I`) para abrir o Console.
+1. Acesse a página de testes: [agilefingers.com/pt/teste](https://agilefingers.com/pt/teste).
+2. Pressione `F12` (ou `Ctrl+Shift+I`) para abrir o **Console**.
 3. Copie o código abaixo na íntegra.
 4. Cole no console e pressione `Enter`.
 
@@ -28,12 +27,14 @@ O script possui um sistema de segurança que valida a página antes de iniciar. 
 
 ```javascript
 (function agileFingersAbsolute() {
-    // Validação de URL: Garante que o script só rode nas páginas de teste
-    const urlPattern = /^https:\/\/agilefingers\.com\/.*\/teste\/.*/;
+    // Validação de URL: Garante que o script só rode nas páginas de teste específicas
+    const urlPattern = /^https:\/\/agilefingers\.com\/.*\/teste\/.+/;
 
     if (!urlPattern.test(window.location.href)) {
         console.log("⏳ Aguardando usuário ir para a página específica...");
-        console.warn("Este script só executa em páginas de teste, como:\n" +
+        console.warn("Este script só executa em páginas de teste. Por favor, acesse:\n" +
+                     "-> [https://agilefingers.com/pt/teste](https://agilefingers.com/pt/teste)\n\n" +
+                     "Exemplos de tarefas válidas:\n" +
                      "- [https://agilefingers.com/pt/teste/tarefa-texto-2](https://agilefingers.com/pt/teste/tarefa-texto-2)\n" +
                      "- [https://agilefingers.com/pt/teste/tarefa-numeros-palavras-aleatorios](https://agilefingers.com/pt/teste/tarefa-numeros-palavras-aleatorios)\n" +
                      "- [https://agilefingers.com/pt/teste/tarefa-texto-1](https://agilefingers.com/pt/teste/tarefa-texto-1)\n" +
@@ -54,7 +55,7 @@ O script possui um sistema de segurança que valida a página antes de iniciar. 
         const firstLetterEl = document.querySelector('.first-letter');
         if (!firstLetterEl) return null;
         let char = firstLetterEl.innerText;
-        // Tratamento de espaços especiais
+        // Tratamento de espaços especiais e vazios
         return (char === "" || char === "\u00A0") ? " " : char;
     }
 
@@ -64,21 +65,21 @@ O script possui um sistema de segurança que valida a página antes de iniciar. 
         if (char) {
             target.focus();
 
-            // Simulação de eventos de teclado para máxima compatibilidade
+            // Simulação de eventos de teclado
             const keyOpts = { key: char, keyCode: char.charCodeAt(0), bubbles: true };
             target.dispatchEvent(new KeyboardEvent('keydown', keyOpts));
 
-            // Injeção de texto via comando de sistema
+            // Injeção de texto
             document.execCommand('insertText', false, char);
 
-            // Disparo de eventos de entrada para o site validar o caractere
+            // Disparo de eventos de entrada para validação do site
             target.dispatchEvent(new InputEvent('input', { data: char, bubbles: true }));
             target.dispatchEvent(new KeyboardEvent('keyup', keyOpts));
 
-            // Delay de 10ms (Velocidade Extrema)
+            // Delay de 10ms (Velocidade de Recorde)
             setTimeout(type, 10);
         } else {
-            // Se a próxima letra ainda não carregou, tenta novamente em 1ms
+            // Se a próxima letra ainda não carregou no DOM, tenta novamente em 1ms
             setTimeout(type, 1);
         }
     }
